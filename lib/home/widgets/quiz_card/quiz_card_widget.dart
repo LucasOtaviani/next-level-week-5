@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class QuizCardWidget extends StatelessWidget {
+  final String title;
+  final int completed;
+  final int questions;
+
+  QuizCardWidget({
+    required this.title,
+    required this.completed,
+    required this.questions,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +37,7 @@ class QuizCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            "Gerenciamento de Estado",
+            title,
             style: AppTextStyles.heading15,
           ),
           SizedBox(height: 20),
@@ -35,11 +45,11 @@ class QuizCardWidget extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: Text("3 de 10", style: AppTextStyles.body11)
+                child: Text(completed.toString() + " de " + questions.toString(), style: AppTextStyles.body11)
               ),
               Expanded(
                 flex: 3,
-                child: ProgressIndicatorWidget(0.3)
+                child: ProgressIndicatorWidget(completed/questions)
               )
             ],
           ),
