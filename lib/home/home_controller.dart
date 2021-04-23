@@ -1,8 +1,5 @@
-import 'package:DevQuiz/core/core.dart';
 import 'package:DevQuiz/home/home_repository.dart';
 import 'package:DevQuiz/home/home_state.dart';
-import 'package:DevQuiz/shared/models/answer_model.dart';
-import 'package:DevQuiz/shared/models/question_model.dart';
 import 'package:DevQuiz/shared/models/quiz_model.dart';
 import 'package:DevQuiz/shared/models/user_model.dart';
 import 'package:flutter/widgets.dart';
@@ -26,6 +23,13 @@ class HomeController
 
   void getQuizzes() async {
     state = HomeState.loading;
+    quizzes = await repository.getQuizzes();
+    state = HomeState.success;
+  }
+
+  void getValues() async {
+    state = HomeState.loading;
+    user = await repository.getUser();
     quizzes = await repository.getQuizzes();
     state = HomeState.success;
   }
